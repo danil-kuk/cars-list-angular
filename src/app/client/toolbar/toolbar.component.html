@@ -1,0 +1,12 @@
+<mat-toolbar>
+  <a routerLink="/cars" class="app-title">Cars List Page</a>
+  <a routerLink="/users" *ngIf="isAdmin$ | async" mat-button class="users-page-link">Users</a>
+  <span class="header-spacer"></span>
+  <div *ngIf="(currentUser$ | async) as user; else login">
+    <span class="hello-message">Hello, {{ user.name }}</span>
+    <button mat-stroked-button type="button" color="primary" (click)="onLogout()">Logout</button>
+  </div>
+  <ng-template #login>
+    <a routerLink="/login" mat-stroked-button color="primary">Login</a>
+  </ng-template>
+</mat-toolbar>

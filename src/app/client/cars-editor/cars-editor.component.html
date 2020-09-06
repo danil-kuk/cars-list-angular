@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Create/Edit car</h2>
+<form [formGroup]="carEditorForm" (ngSubmit)="handleFormSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Producer</mat-label>
+    <input matInput type="text" formControlName="producer">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Model</mat-label>
+    <input matInput type="text" formControlName="model">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Body type</mat-label>
+    <mat-select matInput formControlName="bodyType">
+      <mat-option *ngFor="let bodyType of carBodyTypes | enumToArray" [value]="bodyType.value">
+        {{ bodyType.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Year</mat-label>
+    <input matInput type="number" [min]="carMinYear" [max]="carMaxYear" formControlName="year">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Mileage</mat-label>
+    <input matInput type="number" min="0" [max]="carMaxMileage" step="100" formControlName="mileage">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit" [disabled]="!carEditorForm.valid">
+    Submit
+  </button>
+  <button mat-flat-button color="warn" type="reset">Reset</button>
+</form>

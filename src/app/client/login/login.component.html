@@ -1,0 +1,17 @@
+<h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="password">
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit" [disabled]="!loginForm.valid">
+    Login
+  </button>
+  <div *ngIf="formValidationError$ | async as error">
+    <mat-error>{{ error }}</mat-error>
+  </div>
+</form>
